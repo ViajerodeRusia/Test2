@@ -15,9 +15,9 @@ public class Main {
         5. Подсчитать среднее значение зарплат.
         */
         Employee [] employeeList = new Employee[3];
-        employeeList[0] = new Employee("Joseph Aulsford", 1, 9000);
-        employeeList[1] = new Employee("Richard Selby", 2, 10000);
-        employeeList[2] = new Employee("Cheston Furrow", 3, 11000);
+        employeeList[0] = new Employee("Joseph Aulsford", 5, 9000);
+        employeeList[1] = new Employee("Richard Selby", 6, 10000);
+        employeeList[2] = new Employee("Cheston Furrow", 6, 11000);
 
         Scanner in = new Scanner(System.in);
         System.out.println("1. Получить список всех сотрудников.\n" +
@@ -28,31 +28,25 @@ public class Main {
                 "6. Вывод по id. \n" +
                 "7. Выход.");
         int command = in.nextInt();
-        while (command != 7) {
-
-         if (command == 1) {
+        switch (command) {
+            case 1:
              for (int j=0; j<employeeList.length; j++) {
-                 System.out.println("ID: " + employeeList[j].getNumberId() +
+                 System.out.println("ID: " + employeeList[j].getNumber() +
                          " ФИО: " + employeeList[j].getFullName() +
                          " департамент: "+ employeeList[j].getDepartment()+
                          " ЗП: " + employeeList[j].getWage());
              }
              System.out.println();
-             int newCommand = in.nextInt();
-             command = newCommand;
-         }
-         if (command == 2) {
+             break;
+            case 2:
              int costs = 0;
              for (int j=0; j<employeeList.length; j++) {
                  costs += employeeList[j].getWage();
              }
              System.out.println("Cумма затрат на запрлаты: " + costs);
              System.out.println();
-
-             int newCommand = in.nextInt();
-             command = newCommand;
-         }
-         if (command == 3) {
+             break;
+            case 3:
              int min = employeeList[0].getWage();
              for (int j=1; j<employeeList.length; j++) {
                  if (min>employeeList[j].getWage()) {
@@ -61,11 +55,8 @@ public class Main {
              }
              System.out.println("Сотрудник с min ЗП: " + min);
              System.out.println();
-
-             int newCommand = in.nextInt();
-             command = newCommand;
-         }
-            if (command == 4) {
+             break;
+            case 4:
                 int max = employeeList[0].getWage();
                 for (int j=1; j<employeeList.length; j++) {
                     if (max<employeeList[j].getWage()) {
@@ -74,11 +65,8 @@ public class Main {
                 }
                 System.out.println("Сотрудник с max ЗП: " + max);
                 System.out.println();
-
-                int newCommand = in.nextInt();
-                command = newCommand;
-            }
-            if (command == 5) {
+                break;
+            case 5:
                 int average;
                 int sum = 0;
                 for (int j = 0; j<employeeList.length; j++) {
@@ -87,25 +75,24 @@ public class Main {
                 average = sum/3;
                 System.out.println("Среднее ЗП: " + average);
                 System.out.println();
-
-                int newCommand = in.nextInt();
-                command = newCommand;
-            }
-            if (command == 6) {
+                break;
+            case 6:
                 System.out.println("Введите ID сотрудника: ");
                 int idNumber = in.nextInt();
                 for (int j = 0; j<employeeList.length; j++) {
-                    if (employeeList[j].getNumberId() == idNumber) {
-                        System.out.println("ID: " + employeeList[j].getNumberId() + " ФИО: " + employeeList[j].getFullName() +
+                    if (employeeList[j].getNumber() == idNumber) {
+                        System.out.println("ID: " + employeeList[j].getNumber() + " ФИО: " + employeeList[j].getFullName() +
                                 " департамент: "+ employeeList[j].getDepartment()+
                                 " ЗП: " + employeeList[j].getWage());
                     }
                 }
                 System.out.println();
+                break;
+            case 7:
+                break;
 
-                int newCommand = in.nextInt();
-                command = newCommand;
-            }
+            default:
+                throw new RuntimeException("Ошибка ввода");
         }
     }
 }

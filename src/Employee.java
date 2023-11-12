@@ -2,16 +2,18 @@ public class Employee {
     private String fullName;
     private int department;
     private int wage;
-    private int numberId;
+    private int number;
 
     public Employee (String fullName, int department, int wage) {
         this.fullName=fullName;
         this.department=department;
         this.wage=wage;
-        numberId = new Counted().getId();
+        this.number = Counter.getAndIncrement();
+        ;
     }
-    public int getNumberId() {
-        return this.numberId;
+
+    public int getNumber() {
+        return number;
     }
     public String getFullName() {
         return this.fullName;
