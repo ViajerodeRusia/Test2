@@ -1,7 +1,7 @@
 public class Employee {
     private String fullName;
     private int department;
-    private int wage;
+    private double wage;
     private int number;
 
     public Employee (String fullName, int department, int wage) {
@@ -21,7 +21,11 @@ public class Employee {
     public int getDepartment() {
         return this.department;
     }
-    public int getWage() {
+    public double getWage() {
         return  this.wage;
+    }
+
+    public void setWage(double wage) {
+        this.wage = wage;
     }
 }
